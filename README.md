@@ -1,5 +1,9 @@
-# Conventional (a.k.a POJOnes)
+# Conventional
 Populate POJOs with dummy data based on conventions to make unit testing easier.
+
+[Autopojo](https://github.com/minnal/autopojo) and [PODAM](http://devopsfolks.github.io/podam/) 
+are two libraries I've seen with the same intent, only **Conventional** makes a strong emphasis
+on **convention over configuration** to generate **predictable** test data.
 
 # Show me how
 
@@ -38,5 +42,27 @@ That's quite verbose!
 
 How about this instead?
 
-Conventional.forClass(Customer.class);
-[Customer|name:String]<>-orders*>[Order|total:price], [Order]++-0..*>[LineItem|quantity:int;price:BigDecimal], [Customer]-[Address|street:String]
+```java
+	/**
+	 * Quick test data setup.
+	 */
+	@Test
+	public void testSaveCustomer() {
+		// Set up test data
+		Customer customer = Conventional.create(Customer.class);
+		
+		// Test something
+		Repository repository = new Repository();
+		repository.save(customer);
+		assertEquals("Name", customer.getName());
+		assertEquals(1, repository.countByName("Name"));
+	}
+```
+
+As seen in this test case, the expected value for `customer.getName()` is `Name`,
+which is the default **convention** for String bean properties.
+
+Let's take a look a some more conventions.
+
+# Conventions
+

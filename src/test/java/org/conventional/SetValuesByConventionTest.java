@@ -12,7 +12,7 @@ import org.junit.Test;
 public class SetValuesByConventionTest {
 
 	/**
-	 * Some verbose test data setup.
+	 * Quick test data setup.
 	 */
 	@Test
 	public void testSaveCustomer() {
