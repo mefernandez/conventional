@@ -11,16 +11,27 @@ Let's say you want to do some unit testing and we need a fully populated `Custom
 You can do it manually:
 
 ```java
-// Set up test data
-Customer customer = new Customer();
-customer.setName("John Doe");
-Address address = new Address();
-address.setStreet("21B Baker Street");
-Order order = new Order();
-LineItem item = new Item();
-item.setQuantity(10);
-item.setPrice(new BigDecimal("1.05"));
-order.addLineItem(item);
+	/**
+	 * Some verbose test data setup.
+	 */
+	@Test
+	public void testSaveCustomer() {
+		// Set up test data
+		Customer customer = new Customer();
+		customer.setName("John Doe");
+		Address address = new Address();
+		address.setStreet("21B Baker Street");
+		Order order = new Order();
+		LineItem item = new LineItem();
+		item.setQuantity(10);
+		item.setPrice(new BigDecimal("1.05"));
+		order.addLineItem(item);
+		
+		// Test something
+		Repository repository = new Repository();
+		repository.save(customer);
+		assertEquals(1, repository.countByName("John Doe"));
+	}
 ```
 
 That's quite verbose!
