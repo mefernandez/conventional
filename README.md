@@ -64,5 +64,7 @@ which is the default **convention** for String bean properties.
 
 Let's take a look a some more conventions.
 
-# Conventions
+# Common Conventions
+
+Here's a quick list of conventions for common types:
 
