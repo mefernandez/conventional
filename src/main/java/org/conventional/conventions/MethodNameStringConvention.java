@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 public class MethodNameStringConvention implements Convention<String> {
 
 	public String createValue(Method method) {
-		return method.getName();
+		return method.getName().replaceFirst("get", "");
 	}
 
 }

@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * An interface to define conventions to return some value for type T.
  * 
- * @author mariano
+ * @author mefernandez
  *
  * @param <T>
  */

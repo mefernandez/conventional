@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class CommonConventionsTest {
+public class DefaultConventionsTest {
 
 	@Test
 	public void testString() {
@@ -12,4 +12,9 @@ public class CommonConventionsTest {
 		assertEquals("String", data.getString());
 	}
 
+	@Test
+	public void testBigDecimal() {
+		TestData data = Conventional.create(TestData.class);
+		assertEquals("0", data.getBigDecimal().toPlainString());
+	}
 }

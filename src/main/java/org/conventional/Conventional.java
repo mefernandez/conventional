@@ -17,17 +17,17 @@ public class Conventional {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> T wrap(final T original, DefaultValueObjectProvider provider) {
+	public static <T> T wrap(final T original, ConventionRegistry provider) {
 		Class<T> type = (Class<T>) original.getClass();
 		return create(type, original, provider);
 	}
 
-	public static <T> T create(Class<T> type, DefaultValueObjectProvider provider) {
+	public static <T> T create(Class<T> type, ConventionRegistry provider) {
 		return create(type, null, provider);
 	}
 	
  	@SuppressWarnings("unchecked")
-	private static <T> T create(Class<T> type, final T original, DefaultValueObjectProvider provider) {
+	private static <T> T create(Class<T> type, final T original, ConventionRegistry provider) {
 		if (Modifier.isFinal(type.getModifiers())) {
 			return original;
 		}
