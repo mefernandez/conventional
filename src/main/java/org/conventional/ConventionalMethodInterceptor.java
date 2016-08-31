@@ -4,13 +4,22 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 
 import org.conventional.conventions.Convention;
+import org.conventional.registry.BaseConventionRegistry;
+import org.conventional.registry.ConventionRegistry;
+import org.conventional.registry.DefaultConventionRegistry;
 
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
+/**
+ * Intercepts method calls and creates new objects if method returns null.
+ * @author mefernandez
+ *
+ * @param <T>
+ */
 public class ConventionalMethodInterceptor<T> implements MethodInterceptor {
 	
-	ConventionRegistry defaultValueObjectProvider;
+	ConventionRegistry registry;
 
 	private final T original;
 
@@ -22,9 +31,9 @@ public class ConventionalMethodInterceptor<T> implements MethodInterceptor {
 		this(original, null);
 	}
 
-	public ConventionalMethodInterceptor(T original, ConventionRegistry defaultValueObjectProvider) {
+	public ConventionalMethodInterceptor(T original, ConventionRegistry registry) {
 		this.original = original;
-		this.defaultValueObjectProvider = defaultValueObjectProvider != null ? defaultValueObjectProvider : new DefaultConventionRegistry();
+		this.registry = registry != null ? registry : new DefaultConventionRegistry();
 	}
 
 	public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
@@ -39,14 +48,14 @@ public class ConventionalMethodInterceptor<T> implements MethodInterceptor {
 		Class<?> returnType = method.getReturnType();
 		
 		if (originalValue == null) {
-			Convention<?> convention = defaultValueObjectProvider.getConventionForType(returnType);
+			Convention<?> convention = registry.getConventionForType(returnType);
 			if (convention != null) {
 				return convention.createValue(method);
 			}
 			return Conventional.create(returnType);
 		}
 		
-		if (defaultValueObjectProvider.isConventionRegisteredForType(returnType)) {
+		if (registry.isConventionRegisteredForType(returnType)) {
 			return originalValue;
 		}
 		
@@ -55,11 +64,11 @@ public class ConventionalMethodInterceptor<T> implements MethodInterceptor {
 	}
 
 	public ConventionRegistry getDefaultValueObjectProvider() {
-		return defaultValueObjectProvider;
+		return registry;
 	}
 
 	public void setDefaultValueObjectProvider(BaseConventionRegistry defaultValueObjectProvider) {
-		this.defaultValueObjectProvider = defaultValueObjectProvider;
+		this.registry = defaultValueObjectProvider;
 	}
 
 }

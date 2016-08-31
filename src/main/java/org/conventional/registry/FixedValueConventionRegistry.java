@@ -1,4 +1,4 @@
-package org.conventional;
+package org.conventional.registry;
 
 import org.conventional.conventions.Convention;
 import org.conventional.conventions.FixedValueForTypeConvention;
@@ -17,7 +17,7 @@ public class FixedValueConventionRegistry implements ConventionRegistry {
 	}
 
 	public boolean isConventionRegisteredForType(Class<?> returnType) {
-		return convention.getDefaultValuesRegistry().containsKey(returnType);
+		return convention.isValueRegisteredForType(returnType);
 	}
 
 }

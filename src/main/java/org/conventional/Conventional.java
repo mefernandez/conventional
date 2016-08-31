@@ -2,6 +2,8 @@ package org.conventional;
 
 import java.lang.reflect.Modifier;
 
+import org.conventional.registry.ConventionRegistry;
+
 import net.sf.cglib.proxy.Enhancer;
 
 public class Conventional {

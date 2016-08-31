@@ -14,40 +14,40 @@ import java.util.Map;
  */
 public class FixedValueForTypeConvention implements Convention<Object> {
 
-	private Map<Class<?>, Object> defaultValuesRegistry = new HashMap<Class<?>, Object>();
+	private Map<Class<?>, Object> registry = new HashMap<Class<?>, Object>();
 	
 	public FixedValueForTypeConvention() {
 		// Primitive Types
 		
-		defaultValuesRegistry.put(char.class, '\u0000');
-		defaultValuesRegistry.put(long.class, 0L);
-		defaultValuesRegistry.put(int.class, 0);
-		defaultValuesRegistry.put(boolean.class, false);
-		defaultValuesRegistry.put(float.class, 0f);
-		defaultValuesRegistry.put(double.class, 0d);
+		registry.put(char.class, '\u0000');
+		registry.put(long.class, 0L);
+		registry.put(int.class, 0);
+		registry.put(boolean.class, false);
+		registry.put(float.class, 0f);
+		registry.put(double.class, 0d);
 		
 		// Some important Classes
-		defaultValuesRegistry.put(String.class, "");
-		defaultValuesRegistry.put(Long.class, new Long(0L));
-		defaultValuesRegistry.put(Integer.class, new Integer(0));
-		defaultValuesRegistry.put(Boolean.class, new Boolean(false));
-		defaultValuesRegistry.put(Date.class, new Date(0L));
-		defaultValuesRegistry.put(BigDecimal.class, new BigDecimal(0));
-		defaultValuesRegistry.put(BigInteger.class, new BigInteger("0"));
+		registry.put(String.class, "");
+		registry.put(Long.class, new Long(0L));
+		registry.put(Integer.class, new Integer(0));
+		registry.put(Boolean.class, new Boolean(false));
+		registry.put(Date.class, new Date(0L));
+		registry.put(BigDecimal.class, new BigDecimal(0));
+		registry.put(BigInteger.class, new BigInteger("0"));
 		
 	}
 
 	public Object createValue(Method method) {
 		Class<?> returnType = method.getReturnType();
-		return defaultValuesRegistry.get(returnType);
+		return registry.get(returnType);
 	}
 
-	public Map<Class<?>, Object> getDefaultValuesRegistry() {
-		return defaultValuesRegistry;
+	public <T> void registerValueForType(Class<T> returnType, T value) {
+		registry.put(returnType, value);
 	}
 
-	public void setDefaultValuesRegistry(Map<Class<?>, Object> defaultValuesRegistry) {
-		this.defaultValuesRegistry = defaultValuesRegistry;
+	public boolean isValueRegisteredForType(Class<?> returnType) {
+		return registry.containsKey(returnType);
 	}
 
 }
