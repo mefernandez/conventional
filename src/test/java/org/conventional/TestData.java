@@ -13,6 +13,9 @@ public class TestData {
 	String string;
 	int primitiveInt;
 	BigDecimal bigDecimal;
+	
+	TestData testData;
+	
 
 	public String getString() {
 		return string;
@@ -36,6 +39,14 @@ public class TestData {
 
 	public void setBigDecimal(BigDecimal bigDecimal) {
 		this.bigDecimal = bigDecimal;
+	}
+
+	public TestData getTestData() {
+		return testData;
+	}
+
+	public void setTestData(TestData testData) {
+		this.testData = testData;
 	}
 	
 	

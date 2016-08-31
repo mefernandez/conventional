@@ -17,4 +17,16 @@ public class DefaultConventionsTest {
 		TestData data = Conventional.create(TestData.class);
 		assertEquals("0", data.getBigDecimal().toPlainString());
 	}
+
+	@Test
+	public void testNestedObject() {
+		TestData data = Conventional.create(TestData.class);
+		assertNotNull(data.getTestData());
+	}
+
+	@Test
+	public void testNestedObjectString() {
+		TestData data = Conventional.create(TestData.class);
+		assertEquals("String", data.getTestData().getString());
+	}
 }
