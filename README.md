@@ -1,8 +1,13 @@
 # Conventional
 Populate POJOs with dummy data based on conventions to make unit testing easier.
 
-[Autopojo](https://github.com/minnal/autopojo) and [PODAM](http://devopsfolks.github.io/podam/) 
-are two libraries I've seen with the same intent, only **Conventional** makes a strong emphasis
+In the making of **Conventional**, I've found other Java libraries aiming at populating beans with data:
+
+- [Random Beans](https://github.com/benas/random-beans)
+- [Autopojo](https://github.com/minnal/autopojo) 
+- [PODAM](http://devopsfolks.github.io/podam/) 
+
+Although these have the same intent, **Conventional** makes a strong emphasis
 on **convention over configuration** to generate **predictable** test data.
 
 # Show me how
