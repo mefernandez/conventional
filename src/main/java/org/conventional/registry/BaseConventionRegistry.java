@@ -1,4 +1,4 @@
-package org.conventional;
+package org.conventional.registry;
 
 import java.util.HashMap;
 import java.util.Map;

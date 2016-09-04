@@ -1,6 +1,7 @@
 package org.conventional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Just a class to hold all different property types
@@ -15,6 +16,8 @@ public class TestData {
 	BigDecimal bigDecimal;
 	
 	TestData testData;
+	
+	List<TestData> list;
 	
 
 	public String getString() {
@@ -47,6 +50,14 @@ public class TestData {
 
 	public void setTestData(TestData testData) {
 		this.testData = testData;
+	}
+
+	public List<TestData> getList() {
+		return list;
+	}
+
+	public void setList(List<TestData> list) {
+		this.list = list;
 	}
 	
 	

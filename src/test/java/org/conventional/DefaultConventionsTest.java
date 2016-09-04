@@ -29,4 +29,22 @@ public class DefaultConventionsTest {
 		TestData data = Conventional.create(TestData.class);
 		assertEquals("String", data.getTestData().getString());
 	}
+
+	@Test
+	public void testList() {
+		TestData data = Conventional.create(TestData.class);
+		assertNotNull(data.getList());
+	}
+
+	@Test
+	public void testListIsNotEmpty() {
+		TestData data = Conventional.create(TestData.class);
+		assertFalse(data.getList().isEmpty());
+	}
+
+	@Test
+	public void testListFirstElement() {
+		TestData data = Conventional.create(TestData.class);
+		assertEquals("String", data.getList().get(0).getString());
+	}
 }
