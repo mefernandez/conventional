@@ -1,4 +1,6 @@
 # Conventional
+[ ![Codeship Status for mefernandez/conventional](https://codeship.com/projects/a6a89f80-54a5-0134-da0e-22b31da05696/status?branch=master)](https://codeship.com/projects/171935)
+
 Populate POJOs with dummy data based on conventions to make unit testing easier.
 
 In the making of **Conventional**, I've found other Java libraries aiming at populating beans with data:
